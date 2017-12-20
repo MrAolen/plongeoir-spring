@@ -21,6 +21,9 @@ public class Book{
     @Column(name="state")
     @Enumerated(EnumType.STRING)
     private StateBook state;
+    @ManyToOne
+    @JoinColumn(name="CATEGORY_ID")
+    private Category category;
 
     public Long getId() {
         return id;
@@ -68,6 +71,14 @@ public class Book{
 
     public void setState(StateBook state) {
         this.state = state;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public enum StateBook {
