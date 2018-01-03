@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:include="fragments/header :: header"></head>
+<body>
+<div lang="en" th:include="fragments/navigation :: navigation"></div>
+
+<table>
+    <tr th:each="hour : ${hours}">
+        <td th:text="${hour}"></td>
+    </tr>
+</table>
+
+<div lang="en" th:include="fragments/footer :: footer"></div>
+</body>
+</html>

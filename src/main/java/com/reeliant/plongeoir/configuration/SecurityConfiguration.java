@@ -47,7 +47,7 @@ public class SecurityConfiguration {
             http
                     .authorizeRequests()
                         .antMatchers("/css/**").permitAll()
-                        .antMatchers("/home*").permitAll()
+                        .antMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                         .and()
                     .formLogin()

@@ -9,8 +9,8 @@ public class MetaData{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="label")
-    private String label;
+    @Column(name="key")
+    private String key;
     @Column(name="value")
     private String value;
 
@@ -22,12 +22,12 @@ public class MetaData{
         this.id = id;
     }
 
-    public String getLabel() {
-        return label;
+    public String getKey() {
+        return key;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getValue() {
