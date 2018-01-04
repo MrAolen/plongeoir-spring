@@ -53,12 +53,11 @@ public class BookServiceImpl implements BookService{
     public Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException {
         Book book = new Book();
         book.setCategory(categoryRepository.findOne(bookCreation.getCategoryId()));
-        book.setImage(new SerialBlob(bookCreation.getImage().getBytes());
+        book.setImage(bookCreation.getImage().getBytes());
         book.setParutionDate(bookCreation.getParutionDate());
         book.setSummary(bookCreation.getSummary());
         book.setTitle(bookCreation.getTitle());
-        bookRepository.save()
 
-        return null;
+        return bookRepository.save(book).getId();
     }
 }

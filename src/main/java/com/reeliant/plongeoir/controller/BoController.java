@@ -6,12 +6,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BoController {
-
-        @GetMapping("/bo/login")
-        public String displayLoginPage() {
-                return "admin-login";
-        }
-
         @GetMapping("/bo/home")
         public String displayHomePage() {
                 return "admin-home";

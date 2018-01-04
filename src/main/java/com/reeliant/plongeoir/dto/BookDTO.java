@@ -9,7 +9,7 @@ public class BookDTO{
     private String title;
     private String summary;
     private Date parutionDate;
-    private String image;
+    private byte[] image;
     private StateBook state;
     private CategoryDTO category;
 
@@ -45,11 +45,11 @@ public class BookDTO{
         this.parutionDate = parutionDate;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

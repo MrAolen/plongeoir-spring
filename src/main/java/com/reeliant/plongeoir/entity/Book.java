@@ -18,8 +18,7 @@ public class Book{
     @Column(name="parution")
     private Date parutionDate;
     @Column( name = "image" )
-    @Lob
-    private Blob image;
+    private byte[] image;
     @ManyToOne
     @JoinColumn(name="CATEGORY_ID")
     private Category category;
@@ -56,11 +55,11 @@ public class Book{
         this.parutionDate = parutionDate;
     }
 
-    public Blob getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

@@ -23,7 +23,7 @@ public class SecurityConfiguration {
             http
                     .antMatcher("/bo/**")
                     .authorizeRequests()
-                        .anyRequest().authenticated()
+                        .anyRequest().hasRole("ADMIN")
                         .and()
                     .formLogin()
                         .loginPage("/bo/login")
@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                     .authorizeRequests()
                         .antMatchers("/css/**").permitAll()
                         .antMatchers("/**").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().hasRole("USER")
                         .and()
                     .formLogin()
                         .loginPage("/login")

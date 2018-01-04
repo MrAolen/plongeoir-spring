@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:include="fragments/header :: header"></head>
+<body>
+
+<form action="#" th:action="@{/book/create}" th:object="${book}" method="post">
+  <div class="form-group">
+    <label for="inputTitle">Titre du livre</label>
+    <input type="text" class="form-control" id="inputTitle" placeholder="Titre" th:field="*{title}" />
+  </div>
+  <div class="form-group">
+    <label for="inputDateParution">Date de parution</label>
+    <input type="date" class="form-control" id="inputDateParution" placeholder="Date de parution" th:field="*{dateParution}" />
+  </div>
+  <div class="form-group">
+    <label for="inputSummary">Résumé</label>
+    <textarea class="form-control" id="inputSummary" rows="3" th:field="*{summary}"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="inputImageFile">Date de parution</label>
+    <input type="file" class="form-control" id="inputImageFile" placeholder="Image de couverture" th:field="*{image}" />
+  </div>
+  <div class="form-group">
+    <label for="inputCategory">Example select</label>
+    <select class="form-control" id="inputCategory" th:field="*{categoryId}">
+      <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.label}">...</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<div lang="en" th:include="fragments/footer :: footer"></div>
+</body>
+</html>
