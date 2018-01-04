@@ -18,9 +18,6 @@ public class Book{
     private Date parutionDate;
     @Column(name="image")
     private String image;
-    @Column(name="state")
-    @Enumerated(EnumType.STRING)
-    private StateBook state;
     @ManyToOne
     @JoinColumn(name="CATEGORY_ID")
     private Category category;
@@ -63,14 +60,6 @@ public class Book{
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public StateBook getState() {
-        return state;
-    }
-
-    public void setState(StateBook state) {
-        this.state = state;
     }
 
     public Category getCategory() {

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:include="fragments/header :: header"></head>
+<body>
+
+
+<div class="container">
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Les livres</div>
+                <div class="card-block">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Titre</th>
+                                <th>Date de parution</th>
+                                <th>Catégorie</th>
+                                <th>Etat</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="book : ${infos.books}">
+                            <th th:text="${book.id}">...</th>
+                            <th th:text="${book.title}">...</th>
+                            <th th:text="${book.parutionDate}">...</th>
+                            <th th:text="${book.state}">...</th>
+                            <th th:text="${book.category.label}">...</th>
+                            <th>
+                                <a role="button" class="btn btn-primary btn-sm" th:href="@{'/book/' + ${book.id}}">Détail</a>
+                                <a role="button" class="btn btn-danger btn-sm" th:href="@{'/book/delete/' + ${book.id}}">Supprimer</a>
+                                <a role="button" class="btn btn-success btn-sm" th:href="@{'/book/modify/' + ${book.id}}">Modifier</a>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div lang="en" th:include="fragments/footer :: footer"></div>
+</body>
+</html>
