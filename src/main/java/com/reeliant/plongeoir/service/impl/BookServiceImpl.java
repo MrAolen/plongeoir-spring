@@ -1,14 +1,22 @@
 package com.reeliant.plongeoir.service.impl;
 
 import com.reeliant.plongeoir.dto.BookAndCategoryDTO;
+import com.reeliant.plongeoir.dto.BookCreateDTO;
 import com.reeliant.plongeoir.dto.BookDTO;
+import com.reeliant.plongeoir.dto.CategoryDTO;
+import com.reeliant.plongeoir.entity.Book;
 import com.reeliant.plongeoir.mapper.BookMapper;
 import com.reeliant.plongeoir.repository.BookRepository;
+import com.reeliant.plongeoir.repository.CategoryRepository;
 import com.reeliant.plongeoir.service.BookService;
 import com.reeliant.plongeoir.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +33,9 @@ public class BookServiceImpl implements BookService{
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public BookAndCategoryDTO getBooksAndCategories() {
         BookAndCategoryDTO info = new BookAndCategoryDTO();
@@ -35,16 +46,19 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<BookDTO> getAllBooks() {
-       // return bookRepository.findAll().stream().map(bookMapper::bookToBookDTO).collect(Collectors.toList());
-        BookDTO book = new BookDTO();
-        book.setTitle("Le nom du vent");
+       return bookRepository.findAll().stream().map(bookMapper::bookToBookDTO).collect(Collectors.toList());
+    }
 
-        BookDTO book2 = new BookDTO();
-        book2.setTitle("Harry Potter");
+    @Override
+    public Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException {
+        Book book = new Book();
+        book.setCategory(categoryRepository.findOne(bookCreation.getCategoryId()));
+        book.setImage(new SerialBlob(bookCreation.getImage().getBytes());
+        book.setParutionDate(bookCreation.getParutionDate());
+        book.setSummary(bookCreation.getSummary());
+        book.setTitle(bookCreation.getTitle());
+        bookRepository.save()
 
-        List<BookDTO> books = new ArrayList<>();
-        books.add(book);
-        books.add(book2);
-        return books;
+        return null;
     }
 }

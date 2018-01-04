@@ -23,16 +23,11 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public List<CategoryDTO> getAllCategories() {
-        //return categoryRepository.findAll().stream().map(categoryMapper::categoryToCategoryDTO).collect(Collectors.toList());
-        CategoryDTO category = new CategoryDTO();
-        category.setLabel("fantastique");
+        return categoryRepository.findAll().stream().map(categoryMapper::categoryToCategoryDTO).collect(Collectors.toList());
+    }
 
-        CategoryDTO category2 = new CategoryDTO();
-        category2.setLabel("fiction");
-
-        List<CategoryDTO> categories = new ArrayList<>();
-        categories.add(category);
-        categories.add(category2);
-        return categories;
+    @Override
+    public CategoryDTO getById(Long id) {
+        return categoryMapper.categoryToCategoryDTO(categoryRepository.findOne(id));
     }
 }

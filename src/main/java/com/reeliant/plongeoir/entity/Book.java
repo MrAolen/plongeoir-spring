@@ -1,6 +1,7 @@
 package com.reeliant.plongeoir.entity;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.Date;
 
 @Entity(name = "book")
@@ -16,8 +17,9 @@ public class Book{
     private String summary;
     @Column(name="parution")
     private Date parutionDate;
-    @Column(name="image")
-    private String image;
+    @Column( name = "image" )
+    @Lob
+    private Blob image;
     @ManyToOne
     @JoinColumn(name="CATEGORY_ID")
     private Category category;
@@ -54,11 +56,11 @@ public class Book{
         this.parutionDate = parutionDate;
     }
 
-    public String getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(Blob image) {
         this.image = image;
     }
 
