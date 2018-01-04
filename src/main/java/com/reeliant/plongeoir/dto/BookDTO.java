@@ -6,7 +6,7 @@ import com.reeliant.plongeoir.entity.Book.StateBook;
 public class BookDTO{
 
     private Long id;
-    private String titre;
+    private String title;
     private String summary;
     private Date parutionDate;
     private String image;
@@ -21,12 +21,12 @@ public class BookDTO{
         this.id = id;
     }
 
-    public String getTitre() {
-        return titre;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSummary() {

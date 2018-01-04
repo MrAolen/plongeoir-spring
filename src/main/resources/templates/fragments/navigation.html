@@ -9,6 +9,12 @@
             <div class="col-sm-3" sec:authorize="isAnonymous()">
                 <a role="button" class="btn btn-outline-primary">S'inscrire</a>
             </div>
+            <div class="col-sm-3" sec:authorize="isAuthenticated()">
+                <a role="button" class="btn btn-outline-primary">Mon compte</a>
+            </div>
+            <div class="col-sm-3" sec:authorize="isAuthenticated()">
+                <a role="button" class="btn btn-outline-primary" th:href="@{/book}">Nos livres</a>
+            </div>
             <div class="col-sm-3">
                 <a role="button" class="btn btn-outline-primary" th:href="@{/rules}">Réglements</a>
             </div>

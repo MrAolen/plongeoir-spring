@@ -1,4 +1,4 @@
-package com.reeliant.plongeoir;
+package com.reeliant.plongeoir.controller;
 
 import com.reeliant.plongeoir.dto.LoginDTO;
 import org.springframework.stereotype.Controller;
