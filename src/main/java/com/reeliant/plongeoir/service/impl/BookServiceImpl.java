@@ -17,6 +17,8 @@ import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,11 +52,13 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException {
+    public Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException, ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
         Book book = new Book();
         book.setCategory(categoryRepository.findOne(bookCreation.getCategoryId()));
         book.setImage(bookCreation.getImage().getBytes());
-        book.setParutionDate(bookCreation.getParutionDate());
+        book.setParutionDate(formatter.parse(bookCreation.getParutionDate()));
         book.setSummary(bookCreation.getSummary());
         book.setTitle(bookCreation.getTitle());
 

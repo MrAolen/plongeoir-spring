@@ -7,6 +7,8 @@ import com.reeliant.plongeoir.service.BookService;
 import com.reeliant.plongeoir.service.CategoryService;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,24 +32,27 @@ public class BookController{
         return new ModelAndView("books","infos",info);
     }
 
-    @GetMapping("/book/create")
+    @GetMapping("/bo/book/create")
     public String displayCreateBookPage(Model model) {
         model.addAttribute("book",new BookCreateDTO());
         model.addAttribute("categories",categoryService.getAllCategories());
-        return "login";
+        return "bo-create-book";
     }
 
-    @PostMapping("/book/create")
-    public ModelAndView submitCreateBookPage(@ModelAttribute BookCreateDTO bookCreation) {
+    @PostMapping("/bo/book/create")
+    public ModelAndView submitCreateBookPage(@ModelAttribute BookCreateDTO book) {
         try {
-            bookService.createBook(bookCreation);
+            bookService.createBook(book);
         } catch (IOException e) {
             e.printStackTrace();
             return new ModelAndView("bo-home","error", "Impossible de créer le livre");
         } catch (SQLException e) {
             e.printStackTrace();
             return new ModelAndView("bo-home","success","Impossible de créer le livre");
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return new ModelAndView("bo-home","success","Impossible de créer le livre");
         }
-        return new ModelAndView("bo-create-book","success","Création du livre réussie");
+        return new ModelAndView("redirect:/bo/home");
     }
 }

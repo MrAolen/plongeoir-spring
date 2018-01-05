@@ -6,6 +6,7 @@ import com.reeliant.plongeoir.dto.BookDTO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 public interface BookService{
@@ -13,5 +14,5 @@ public interface BookService{
 
     List<BookDTO> getAllBooks();
 
-    Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException;
+    Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException, ParseException;
 }

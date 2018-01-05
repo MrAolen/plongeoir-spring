@@ -18,6 +18,7 @@ public class Book{
     @Column(name="parution")
     private Date parutionDate;
     @Column( name = "image" )
+    @Lob
     private byte[] image;
     @ManyToOne
     @JoinColumn(name="CATEGORY_ID")

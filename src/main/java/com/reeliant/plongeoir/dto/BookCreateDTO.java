@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class BookCreateDTO{
     private String title;
-    private Date parutionDate;
+    private String parutionDate;
     private String summary;
     private MultipartFile image;
     private Long categoryId;
@@ -19,11 +19,11 @@ public class BookCreateDTO{
         this.title = title;
     }
 
-    public Date getParutionDate() {
+    public String getParutionDate() {
         return parutionDate;
     }
 
-    public void setParutionDate(Date parutionDate) {
+    public void setParutionDate(String parutionDate) {
         this.parutionDate = parutionDate;
     }
 

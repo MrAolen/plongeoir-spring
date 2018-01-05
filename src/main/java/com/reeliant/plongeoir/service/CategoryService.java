@@ -8,4 +8,6 @@ public interface CategoryService{
     List<CategoryDTO> getAllCategories();
 
     CategoryDTO getById(Long id);
+
+    Long createCategory(CategoryDTO categoryCreation);
 }
