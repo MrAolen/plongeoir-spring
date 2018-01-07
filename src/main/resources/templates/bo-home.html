@@ -31,9 +31,9 @@
                             <th th:text="${book.state}">...</th>
                             <th th:text="${book.category.label}">...</th>
                             <th>
-                                <a role="button" class="btn btn-primary btn-sm" th:href="@{'/book/' + ${book.id}}">Détail</a>
-                                <a role="button" class="btn btn-danger btn-sm" th:href="@{'/book/delete/' + ${book.id}}">Supprimer</a>
-                                <a role="button" class="btn btn-success btn-sm" th:href="@{'/book/modify/' + ${book.id}}">Modifier</a>
+                                <a role="button" class="btn btn-primary btn-sm" th:href="@{'/bo/book/' + ${book.id}}">Détail</a>
+                                <a role="button" class="btn btn-danger btn-sm" th:href="@{'/bo/book/delete/' + ${book.id}}">Supprimer</a>
+                                <a role="button" class="btn btn-success btn-sm" th:href="@{'/bo/book/modify/' + ${book.id}}">Modifier</a>
                             </th>
                         </tr>
                         </tbody>

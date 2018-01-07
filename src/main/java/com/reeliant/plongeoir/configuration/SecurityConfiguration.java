@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration {
 
     @Configuration
-    @Order(2)
+    @Order(1000)
     public static class AdminConfigurationAdpater extends WebSecurityConfigurerAdapter {
         public AdminConfigurationAdpater() {
             super();
@@ -54,7 +54,7 @@ public class SecurityConfiguration {
     }
 
     @Configuration
-    @Order(1)
+    @Order(2000)
     public static class UserConfigurationAdpater extends WebSecurityConfigurerAdapter {
         public UserConfigurationAdpater() {
             super();
@@ -73,7 +73,6 @@ public class SecurityConfiguration {
                     .authorizeRequests().antMatchers("/css/**","/js/**","/hours","/rules","/home").permitAll()
                     .and()
                     .antMatcher("/**")
-                    //.antMatchers("/css/**","/**").permitAll()
                         .authorizeRequests()
                         .anyRequest()
                         .hasAuthority("USER")

@@ -15,4 +15,6 @@ public interface BookService{
     List<BookDTO> getAllBooks();
 
     Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException, ParseException;
+
+    BookDTO getBookById(Long id);
 }

@@ -5,7 +5,9 @@ import com.reeliant.plongeoir.dto.BookCreateDTO;
 import com.reeliant.plongeoir.dto.BookDTO;
 import com.reeliant.plongeoir.dto.CategoryDTO;
 import com.reeliant.plongeoir.entity.Book;
+import com.reeliant.plongeoir.entity.Book.StateBook;
 import com.reeliant.plongeoir.mapper.BookMapper;
+import com.reeliant.plongeoir.mapper.CategoryMapper;
 import com.reeliant.plongeoir.repository.BookRepository;
 import com.reeliant.plongeoir.repository.CategoryRepository;
 import com.reeliant.plongeoir.service.BookService;
@@ -13,13 +15,10 @@ import com.reeliant.plongeoir.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +36,9 @@ public class BookServiceImpl implements BookService{
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     @Override
     public BookAndCategoryDTO getBooksAndCategories() {
@@ -61,7 +63,12 @@ public class BookServiceImpl implements BookService{
         book.setParutionDate(formatter.parse(bookCreation.getParutionDate()));
         book.setSummary(bookCreation.getSummary());
         book.setTitle(bookCreation.getTitle());
-
         return bookRepository.save(book).getId();
+    }
+
+    @Override
+    public BookDTO getBookById(Long id) {
+        Book book = bookRepository.findOne(id);
+        return bookMapper.bookToBookDTO(book);
     }
 }

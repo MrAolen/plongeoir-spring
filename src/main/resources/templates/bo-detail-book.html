@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:include="fragments/header :: header"></head>
+<body>
+
+<table>
+  <tr>
+    <td>ID :</td>
+    <td th:text="${book.id}">...</td>
+  </tr>
+  <tr>
+    <td>Titre :</td>
+    <td th:text="${book.title}">...</td>
+  </tr>
+  <tr>
+    <td>Résumé :</td>
+    <td th:text="${book.summary}">...</td>
+  </tr>
+  <tr>
+    <td>Date de parution :</td>
+    <td th:text="${book.parutionDate}">...</td>
+  </tr>
+  <tr>
+    <td>Image :</td>
+    <td><img th:src="@{'data:image/jpeg;base64,'+ ${book.image}}" alt="Image Livre"/> </td>
+  </tr>
+  <tr>
+    <td>Etat :</td>
+    <td th:text="${book.state}">...</td>
+  </tr>
+  <tr>
+    <td>Catégorie :</td>
+    <td th:text="${book.category.label}">...</td>
+  </tr>
+</table>
+
+<div lang="en" th:include="fragments/footer :: footer"></div>
+</body>
+</html>
