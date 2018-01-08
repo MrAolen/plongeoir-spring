@@ -1,0 +1,18 @@
+<div th:fragment="navigation-left" >
+    <div id = "menu">
+        <div class="panel list-group">
+            <a href="" class="list-group-item">Horaires</a>
+            <a href="" class="list-group-item">Réglements</a>
+            <a href="" class="list-group-item">Mon compte</a>
+            <a href="" class="list-group-item">Déconnection</a>
+            <a href="#" class="list-group-item" data-toggle="collapse" data-target="#sm">Nos Livres<b class="caret"></b></a>
+            <div id="sm" class="sublinks collapse">
+                <!--<s:iterator value="listCategorie" var="categorie">
+                    <a href="" ><s:param name="nomCategorie"><cb-cm:contentView name="categorie" view="vue_liste_categorie"/></s:param></s:url>" class="list-group-item" ><small><cb-cm:contentView name="categorie" view="vue_liste_categorie"/></small></a>
+                </s:iterator>-->
+            </div>
+            <a href="" class="list-group-item">Login</a>
+            <a href="" class="list-group-item">Inscription</a>
+        </div>
+    </div>
+</div>

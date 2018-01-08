@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en" th:include="fragments/header :: header"></head>
-<body>
+<body style="padding-top : 0px">
     <div lang="en" th:include="fragments/navigation :: navigation"></div>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div lang="en" th:include="fragments/navigation-left :: navigation-left"></div>
+            </div>
+        </div>
+    </div>
     HOME
 
     <div lang="en" th:include="fragments/footer :: footer"></div>
