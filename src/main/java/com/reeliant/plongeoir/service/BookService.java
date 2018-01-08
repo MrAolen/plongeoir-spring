@@ -17,4 +17,8 @@ public interface BookService{
     Long createBook(BookCreateDTO bookCreation) throws IOException, SQLException, ParseException;
 
     BookDTO getBookById(Long id);
+
+    Boolean delete(Long id);
+
+    void updateBook(BookCreateDTO book, Long id) throws IOException, ParseException;
 }

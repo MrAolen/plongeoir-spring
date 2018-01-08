@@ -32,6 +32,7 @@ public class SecurityConfiguration {
 
         protected void configure(HttpSecurity http) throws Exception  {
             http
+                    .csrf().disable()
                     .antMatcher("/bo/**")
                         .authorizeRequests()
                         .anyRequest()
@@ -70,6 +71,7 @@ public class SecurityConfiguration {
 
         protected void configure(HttpSecurity http) throws Exception  {
             http
+                    .csrf().disable()
                     .authorizeRequests().antMatchers("/css/**","/js/**","/hours","/rules","/home").permitAll()
                     .and()
                     .antMatcher("/**")

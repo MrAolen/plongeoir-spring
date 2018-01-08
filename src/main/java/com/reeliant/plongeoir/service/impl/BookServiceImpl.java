@@ -71,4 +71,23 @@ public class BookServiceImpl implements BookService{
         Book book = bookRepository.findOne(id);
         return bookMapper.bookToBookDTO(book);
     }
+
+    @Override
+    public Boolean delete(Long id) {
+        bookRepository.delete(id);
+        return true;
+    }
+
+    @Override
+    public void updateBook(BookCreateDTO book, Long id) throws IOException, ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        Book bookToUpdate = bookRepository.findOne(id);
+        bookToUpdate.setCategory(categoryRepository.findOne(book.getCategoryId()));
+        bookToUpdate.setImage(book.getImage().getBytes());
+        bookToUpdate.setParutionDate(formatter.parse(book.getParutionDate()));
+        bookToUpdate.setSummary(book.getSummary());
+        bookToUpdate.setTitle(book.getTitle());
+        bookRepository.save(bookToUpdate).getId();
+    }
 }

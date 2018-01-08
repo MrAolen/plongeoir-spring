@@ -38,4 +38,16 @@ public class CategoryServiceImpl implements CategoryService{
         category.setLabel(categoryCreation.getLabel());
         return categoryRepository.save(category).getId();
     }
+
+    @Override
+    public void delete(Long id) {
+        categoryRepository.delete(id);
+    }
+
+    @Override
+    public void updateCategory(CategoryDTO category, Long id) {
+        Category categoryToUpdate = categoryRepository.findOne(id);
+        categoryToUpdate.setLabel(category.getLabel());
+        categoryRepository.save(categoryToUpdate);
+    }
 }

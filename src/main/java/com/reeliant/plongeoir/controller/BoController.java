@@ -25,17 +25,4 @@ public class BoController {
                 BackOfficeDataDTO backOfficeInformations = adminService.getDatasForHomeBackOffice();
                 return new ModelAndView("bo-home","infos",backOfficeInformations);
         }
-
-        @GetMapping("/bo/category/create")
-        public ModelAndView displayCategoryCreationPage() {
-                return new ModelAndView("bo-create-category","category",new CategoryDTO());
-        }
-
-        @PostMapping("/bo/category/create")
-        public ModelAndView submitCategoryCreation(@ModelAttribute CategoryDTO category) {
-                categoryService.createCategory(category);
-                return new ModelAndView("redirect:/bo/home");
-        }
-
-
 }

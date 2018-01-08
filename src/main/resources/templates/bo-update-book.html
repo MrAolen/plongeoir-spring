@@ -3,14 +3,14 @@
 <head lang="en" th:include="fragments/header :: header"></head>
 <body>
 
-<form action="#" enctype="multipart/form-data" th:action="@{/bo/book/create}" th:object="${book}" method="post">
+<form action="#" enctype="multipart/form-data" th:action="@{/bo/book/update/} + ${id}" th:object="${book}" method="post">
   <div class="form-group">
     <label for="inputTitle">Titre du livre</label>
-    <input type="text" class="form-control" id="inputTitle" placeholder="Titre" th:field="*{title}" />
+    <input type="text" class="form-control" id="inputTitle" placeholder="Titre" th:field="*{title}"/>
   </div>
   <div class="form-group">
     <label for="inputDateParution">Date de parution</label>
-    <input type="date" class="form-control" id="inputDateParution" placeholder="Date de parution" th:field="*{parutionDate}" />
+    <input type="date" class="form-control" id="inputDateParution" placeholder="Date de parution" th:field="*{parutionDate}"/>
   </div>
   <div class="form-group">
     <label for="inputSummary">Résumé</label>
@@ -18,15 +18,20 @@
   </div>
   <div class="form-group">
     <label for="inputImageFile">Image du livre</label>
-    <input type="file" class="form-control" id="inputImageFile" placeholder="Image de couverture" th:field="*{image}" />
+    <table>
+      <tr>
+        <th><img th:src="@{'data:image/jpeg;base64,'+ ${image}}" alt="Image Livre"/></th>
+        <th><input type="file" class="form-control" id="inputImageFile" placeholder="Image de couverture" th:field="*{image}" /></th>
+      </tr>
+    </table>
   </div>
   <div class="form-group">
     <label for="inputCategory">Sélectionner une catégorie</label>
     <select class="form-control" id="inputCategory" th:field="*{categoryId}">
-      <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.label}">...</option>
+      <option th:each="category : ${categories}" th:value="${category.id}" th:selected="${category.id == book.categoryId}" th:text="${category.label}">...</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-primary">Créer</button>
+  <button type="submit" class="btn btn-primary">Mettre à jour</button>
 </form>
 
 <div lang="en" th:include="fragments/footer :: footer"></div>

@@ -24,16 +24,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="book : ${infos.books}">
-                            <th th:text="${book.id}">...</th>
-                            <th th:text="${book.title}">...</th>
-                            <th th:text="${book.parutionDate}">...</th>
-                            <th th:text="${book.state}">...</th>
-                            <th th:text="${book.category.label}">...</th>
+                            <tr th:each="book : ${infos.books}" th:id="'book_' + ${book.id}">
+                                <th th:text="${book.id}">...</th>
+                                <th th:text="${book.title}">...</th>
+                                <th th:text="${book.parutionDate}">...</th>
+                                <th th:text="${book.category.label}">...</th>
+                                <th th:text="${book.state}">...</th>
+                                <th>
+                                    <a role="button" class="btn btn-primary btn-sm" th:href="@{'/bo/book/' + ${book.id}}">Détail</a>
+                                    <a role="button" class="btn btn-danger btn-sm" th:onclick="${'deleteBook(' + book.id + ');'}">Supprimer</a>
+                                    <a role="button" class="btn btn-success btn-sm" th:href="@{'/bo/book/update/' + ${book.id}}">Modifier</a>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Les catégories</div>
+                <div class="card-block">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Label</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="category : ${infos.categories}" th:id="'category_' + ${category.id}">
+                            <th th:text="${category.id}">...</th>
+                            <th th:text="${category.label}">...</th>
                             <th>
-                                <a role="button" class="btn btn-primary btn-sm" th:href="@{'/bo/book/' + ${book.id}}">Détail</a>
-                                <a role="button" class="btn btn-danger btn-sm" th:href="@{'/bo/book/delete/' + ${book.id}}">Supprimer</a>
-                                <a role="button" class="btn btn-success btn-sm" th:href="@{'/bo/book/modify/' + ${book.id}}">Modifier</a>
+                                <a role="button" class="btn btn-danger btn-sm" th:onclick="${'deleteCategory(' + category.id + ');'}">Supprimer</a>
+                                <a role="button" class="btn btn-success btn-sm" th:href="@{'/bo/category/update/' + ${category.id}}">Modifier</a>
                             </th>
                         </tr>
                         </tbody>
@@ -44,6 +73,47 @@
     </div>
 </div>
 
+<script>
+function deleteBook(id) {
+    $.ajax({
+        type : "DELETE",
+        contentType : "application/json",
+        url : "http://localhost:8080/bo/book/delete/"+id,
+        dataType : 'json',
+        timeout : 100000,
+        success : function(data) {
+            console.log("SUCCESS");
+            $("#book_"+id).remove();
+        },
+        error : function(e) {
+            console.log("ERROR: ", e);
+        },
+        done : function(e) {
+            console.log("DONE");
+        }
+    });
+}
+
+function deleteCategory(id) {
+    $.ajax({
+        type : "DELETE",
+        contentType : "application/json",
+        url : "http://localhost:8080/bo/category/delete/"+id,
+        dataType : 'json',
+        timeout : 100000,
+        success : function(data) {
+            console.log("SUCCESS");
+            $("#category_"+id).remove();
+        },
+        error : function(e) {
+            console.log("ERROR: ", e);
+        },
+        done : function(e) {
+            console.log("DONE");
+        }
+    });
+}
+</script>
 <div lang="en" th:include="fragments/footer :: footer"></div>
 </body>
 </html>
