@@ -3,15 +3,15 @@ package com.reeliant.plongeoir.entity;
 import javax.persistence.*;
 
 @Entity(name = "metadata")
-@Table(name="METADATA")
+@Table(name="METADATA_WEBSITE")
 public class MetaData{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="key")
+    @Column(name="key_data")
     private String key;
-    @Column(name="value")
+    @Column(name="value_data")
     private String value;
 
     public Long getId() {
