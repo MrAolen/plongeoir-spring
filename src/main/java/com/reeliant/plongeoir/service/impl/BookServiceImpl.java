@@ -11,6 +11,7 @@ import com.reeliant.plongeoir.mapper.CategoryMapper;
 import com.reeliant.plongeoir.repository.BookRepository;
 import com.reeliant.plongeoir.repository.CategoryRepository;
 import com.reeliant.plongeoir.service.BookService;
+import com.reeliant.plongeoir.service.BorrowService;
 import com.reeliant.plongeoir.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,9 @@ public class BookServiceImpl implements BookService{
     @Autowired
     private CategoryMapper categoryMapper;
 
+    @Autowired
+    private BorrowService borrowService;
+
     @Override
     public BookAndCategoryDTO getBooksAndCategories() {
         BookAndCategoryDTO info = new BookAndCategoryDTO();
@@ -50,7 +54,15 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<BookDTO> getAllBooks() {
-       return bookRepository.findAll().stream().map(bookMapper::bookToBookDTO).collect(Collectors.toList());
+       List<BookDTO> books = bookRepository.findAll().stream().map(bookMapper::bookToBookDTO).collect(Collectors.toList());
+       for (BookDTO book : books) {
+            if (borrowService.isBookBorrow(book.getId())) {
+                book.setState(StateBook.RESERVED);
+            } else {
+                book.setState(StateBook.FREE);
+            }
+       }
+       return books;
     }
 
     @Override

@@ -32,15 +32,15 @@
                     <li id="reglement">
                         <a role="button" class="btn btn-outline-primary element-navbar" th:href="@{/rules}">Réglements</a>
                     </li>
-                    <li id="livres">
+                    <li id="livres" sec:authorize="isAuthenticated()">
                         <a role="button" class="btn btn-outline-primary element-navbar" th:href="@{/book}">Nos livres</a>
                     </li>
                     <li id="profil" sec:authorize="isAuthenticated()">
                         <a role="button" class="btn btn-outline-primary element-navbar">Mon compte</a>
                     </li>
-                    <!--<li>
-                        <a href="<s:url action='deconnection' namespace='/'/>"><s:property value="%{getText('default.page.deconnection')}"/></a>
-                    </li>-->
+                    <li id="deconnexion" sec:authorize="isAuthenticated()">
+                    <a role="button" class="btn btn-outline-primary element-navbar">Deconnexion</a>
+                    </li>
                     <li class="submenu" id="connection" sec:authorize="isAnonymous()">
                         <a role="button" class="btn btn-outline-primary element-navbar" th:href="@{/login}">Connexion</a>
                     </li>
