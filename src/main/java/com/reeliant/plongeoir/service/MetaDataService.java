@@ -5,5 +5,5 @@ import java.util.List;
 public interface MetaDataService{
     String getMetaDataByKey(String key);
 
-    List<String> getOpeningHours();
+    void updateMetaData(String data, String key);
 }

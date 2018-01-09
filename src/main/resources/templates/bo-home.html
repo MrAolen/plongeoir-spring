@@ -71,6 +71,66 @@
             </div>
         </div>
     </div>
+
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-12">
+            <div class="panel" style="border: 1px solid #e07600;">
+                <div class="panel-heading" style="font-color:white; background-color:#e07600; border-color:#e07600">Données du site</div>
+                <div class="panel-body">
+
+                    <div class="row" style="margin-left:15px">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Message d'accueil du site
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" th:text="${homepage}" id="home"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <a role="button" href="#" class="btn btn-primary" onclick="updateMetaData('home')">Modifier</a>
+                                </div>
+                            </div>
+                    </div>
+                    <br/><br/>
+                    <div class="row" style="margin-left:15px">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Réglements
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" th:text="${rules}" id="rules"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <a role="button" href="#" class="btn btn-primary" onclick="updateMetaData('rules')">Modifier</a>
+                                </div>
+                            </div>
+                    </div>
+
+                    <br/><br/>
+                    <div class="row" style="margin-left:15px">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Horaires
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" th:text="${openHours}" id="hours"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <a role="button" href="#" class="btn btn-primary" onclick="updateMetaData('hours')">Modifier</a>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -104,6 +164,29 @@ function deleteCategory(id) {
         success : function(data) {
             console.log("SUCCESS");
             $("#category_"+id).remove();
+        },
+        error : function(e) {
+            console.log("ERROR: ", e);
+        },
+        done : function(e) {
+            console.log("DONE");
+        }
+    });
+}
+
+function updateMetaData(metadata) {
+    var data = {};
+    data["data"] = $("#"+metadata).val();
+    data["key"] = metadata;
+    $.ajax({
+        type : "PUT",
+        contentType : "application/json",
+        url : "http://localhost:8080/bo/metadata",
+        data : JSON.stringify(data),
+        dataType : 'json',
+        timeout : 100000,
+        success : function(data) {
+            console.log("SUCCESS");
         },
         error : function(e) {
             console.log("ERROR: ", e);

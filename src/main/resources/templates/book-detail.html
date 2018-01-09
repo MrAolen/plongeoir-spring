@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:include="fragments/header :: header"></head>
+<body>
+<div lang="en" th:include="fragments/navigation :: navigation"></div>
+
+<div class="container" style="margin-top:15px;">
+    <div class="row">
+        <div class="col-md-3">
+            <div lang="en" th:include="fragments/navigation-left :: navigation-left"></div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img height="250" th:src="@{'data:image/jpeg;base64,'+ ${book.image}}" alt="Image Livre"/>
+                </div>
+                <div class="col-sm-8">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Titre du livre</td>
+                                <td th:text="${book.title}"></td>
+                            </tr>
+                            <tr>
+                                <td>Date de parution</td>
+                                <td th:text="${book.parutionDate}"></td>
+                            </tr>
+                            <tr>
+                                <td>Disponibilité</td>
+                                <td th:text="${book.state}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br/><br/>
+
+            <div class="panel" style="border: 1px solid #e07600;">
+                <div class="panel-heading" style="font-color:white; background-color:#e07600; border-color:#e07600">Résumé</div>
+                <div class="panel-body" th:text="${book.summary}"></div>
+            </div>
+        </div>
+    </div>
+    <div lang="en" th:include="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

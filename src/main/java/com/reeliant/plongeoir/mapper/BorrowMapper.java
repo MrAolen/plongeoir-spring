@@ -5,7 +5,7 @@ import com.reeliant.plongeoir.entity.Borrow;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses={BookMapper.class,UserMapper.class})
+@Mapper(uses={BookMapper.class,UserMapper.class}, componentModel = "spring")
 public interface BorrowMapper{
 
     BorrowMapper INSTANCE = Mappers.getMapper(BorrowMapper.class);

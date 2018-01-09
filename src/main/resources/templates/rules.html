@@ -3,9 +3,16 @@
 <head lang="en" th:include="fragments/header :: header"></head>
 <body>
 <div lang="en" th:include="fragments/navigation :: navigation"></div>
-
-<p th:text="${rules}" />
-
-<div lang="en" th:include="fragments/footer :: footer"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div lang="en" th:include="fragments/navigation-left :: navigation-left"></div>
+        </div>
+        <div class="col-md-9">
+            <div th:text="${rules}"></div>
+        </div>
+    </div>
+    <div lang="en" th:include="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>

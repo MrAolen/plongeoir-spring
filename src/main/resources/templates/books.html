@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="book : ${infos.books}">
-                        <th th:text="${book.title}"></th>
+                        <th><a th:href="@{'/book/' + ${book.id}}" th:text="${book.title}"></a></th>
                         <th th:text="${book.parutionDate}"></th>
                         <th><img th:src="@{'data:image/jpeg;base64,'+ ${book.image}}" alt="Image Livre" height="50"/></th>
                         <th th:text="${book.state}"></th>
@@ -32,8 +32,7 @@
             </table>
         </div>
     </div>
+    <div lang="en" th:include="fragments/footer :: footer"></div>
 </div>
-
-<div lang="en" th:include="fragments/footer :: footer"></div>
 </body>
 </html>

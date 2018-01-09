@@ -72,7 +72,7 @@ public class SecurityConfiguration {
         protected void configure(HttpSecurity http) throws Exception  {
             http
                     .csrf().disable()
-                    .authorizeRequests().antMatchers("/css/**","/js/**","/img/**","/hours","/rules","/home").permitAll()
+                    .authorizeRequests().antMatchers("/css/**","/js/**","/img/**","/hours","/rules","/home","/register","/").permitAll()
                     .and()
                     .antMatcher("/**")
                         .authorizeRequests()

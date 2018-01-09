@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en" th:include="fragments/header :: header"></head>
+<body>
+  <div lang="en" th:include="fragments/navigation :: navigation"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div lang="en" th:include="fragments/navigation-left :: navigation-left"></div>
+      </div>
+      <div class="col-md-9">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+
+
+          <div class="row">
+            <div class="col-sm-6">
+              <table class="table table-striped">
+                <tbody>
+                <tr>
+                  <td>Identifiant : </td>
+                  <td th:text="${user.username}"></td>
+                </tr>
+                <tr>
+                  <td>Nom : </td>
+                  <td th:text="${user.name}"></td>
+                </tr>
+                <tr>
+                  <td>Prénom : </td>
+                  <td th:text="${user.forname}"></td>
+                </tr>
+                <tr>
+                  <td>Email : </td>
+                  <td th:text="${user.email}"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+            <div class="col-sm-6" id="divEmprunt">
+                <table th:if="${#lists.size(borrows)>0}" class="table table-striped" id="tableEmprunt">
+                  <thead>
+                  <tr>
+                    <td>Nom du livre</td>
+                    <td>Date d'emprunt</td>
+                    <td></td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="borrow : ${borrows}">
+                      <td th:text="${borrow.book.name}"></td>
+                      <td>Date à rajotuer</td>
+                      <td>
+                        <button type ="button" class="btn btn-primary boutonRendre">Rendre</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div th:if="${#lists.size(borrows)==0}" class="alert alert-info">
+                  Vous n'avez pas réservé de livre !
+                </div>
+            </div>
+          </div>
+
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Modification des informations de compte
+            </div>
+            <div class="panel-body">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-8">
+                <form  action="#" th:action="@{/update}" th:object="${user}" method="post" theme="simple">
+
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-control-label" for="inputUsername">Identifiant :</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="inputUsername" placeholder="Identifiant" th:field="*{username}" />
+                    </div>
+                    <div class="col-sm-1"></div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-control-label" for="inputPassword">Mot de passe :</label>
+                    <div class="col-sm-7">
+                      <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" th:field="*{password}" />
+                    </div>
+                    <div class="col-sm-1"></div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-control-label" for="inputConfirmPassword">Confirmer mot de passe :</label>
+                    <div class="col-sm-7">
+                      <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirmer le mot de passe" th:field="*{confirmPassword}" />
+                    </div>
+                    <div class="col-sm-1"></div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-control-label" for="inputConfirmPassword">Nom :</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="inputName" placeholder="Nom" th:field="*{name}" />
+                    </div>
+                    <div class="col-sm-1"></div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-control-label" for="inputConfirmPassword">Prenom :</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="inputForname" placeholder="Prénom" th:field="*{forname}" />
+                    </div>
+                    <div class="col-sm-1"></div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-4 form-control-label" for="inputConfirmPassword">Email :</label>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" id="inputEmail" placeholder="Email" th:field="*{email}" />
+                    </div>
+                    <div class="col-sm-1"></div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-1"></div>
+            </div>
+          </div>
+  </div>
+
+      </div>
+    </div>
+    <div lang="en" th:include="fragments/footer :: footer"></div>
+  </div>
+</body>
+</html>

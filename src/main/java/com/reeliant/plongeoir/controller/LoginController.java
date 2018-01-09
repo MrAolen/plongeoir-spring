@@ -20,20 +20,9 @@ public class LoginController{
         return new ModelAndView("login","login",new LoginDTO());
     }
 
-   /* @PostMapping("/login")
-    public ModelAndView submitLoginPage() {
-        return new ModelAndView("home");
-    }*/
-
     @GetMapping("/bo/login")
     public String displayBoLoginPage(Model model) {
         model.addAttribute("login",new LoginDTO());
         return "bo-login";
     }
-
-   /* @PostMapping("/bo/login")
-    public ModelAndView submitBoLoginPage() {
-        BackOfficeDataDTO backOfficeInformations = adminService.getDatasForHomeBackOffice();
-        return new ModelAndView("bo-home","infos",backOfficeInformations);
-    }*/
 }

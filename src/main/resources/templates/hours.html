@@ -3,13 +3,16 @@
 <head lang="en" th:include="fragments/header :: header"></head>
 <body>
 <div lang="en" th:include="fragments/navigation :: navigation"></div>
-
-<table>
-    <tr th:each="hour : ${hours}">
-        <td th:text="${hour}"></td>
-    </tr>
-</table>
-
-<div lang="en" th:include="fragments/footer :: footer"></div>
+<div class="container">
+        <div class="row">
+                <div class="col-md-3">
+                        <div lang="en" th:include="fragments/navigation-left :: navigation-left"></div>
+                </div>
+                <div class="col-md-9">
+                        <div th:text="${hours}"></div>
+                </div>
+        </div>
+        <div lang="en" th:include="fragments/footer :: footer"></div>
+</div>
 </body>
 </html>

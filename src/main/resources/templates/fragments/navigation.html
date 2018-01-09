@@ -36,7 +36,7 @@
                         <a role="button" class="btn btn-outline-primary element-navbar" th:href="@{/book}">Nos livres</a>
                     </li>
                     <li id="profil" sec:authorize="isAuthenticated()">
-                        <a role="button" class="btn btn-outline-primary element-navbar">Mon compte</a>
+                        <a role="button" class="btn btn-outline-primary element-navbar" th:href="@{/account}">Mon compte</a>
                     </li>
                     <li id="deconnexion" sec:authorize="isAuthenticated()">
                     <a role="button" class="btn btn-outline-primary element-navbar">Deconnexion</a>
@@ -45,7 +45,7 @@
                         <a role="button" class="btn btn-outline-primary element-navbar" th:href="@{/login}">Connexion</a>
                     </li>
                     <li class="submenu" id="inscription" sec:authorize="isAnonymous()">
-                        <a role="button" class="btn btn-outline-primary element-navbar">S'inscrire</a>
+                        <a role="button" class="btn btn-outline-primary element-navbar" th:href="@{/register}">S'inscrire</a>
                     </li>
                 </ul>
             </div>

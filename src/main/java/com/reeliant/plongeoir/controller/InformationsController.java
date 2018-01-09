@@ -17,7 +17,7 @@ public class InformationsController{
 
     @GetMapping("/hours")
     public ModelAndView displayOpeningHoursPage() {
-        List<String> hours = metaDataService.getOpeningHours();
+        String hours = metaDataService.getMetaDataByKey("hours");
         return new ModelAndView("hours","hours",hours);
     }
 

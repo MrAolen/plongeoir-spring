@@ -1,7 +1,9 @@
 package com.reeliant.plongeoir.configuration;
 
+import com.reeliant.plongeoir.entity.MetaData;
 import com.reeliant.plongeoir.entity.Role;
 import com.reeliant.plongeoir.entity.User;
+import com.reeliant.plongeoir.repository.MetaDataRepository;
 import com.reeliant.plongeoir.repository.RoleRepository;
 import com.reeliant.plongeoir.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class InitConfig{
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private MetaDataRepository metaDataRepository;
 
     @PostConstruct
     public void initData() {
@@ -59,5 +64,20 @@ public class InitConfig{
         userAdmin.setForname("Nicolas");
         userAdmin.setName("Gunther");
         userRepository.save(userAdmin);
+
+        MetaData hours = new MetaData();
+        hours.setValue("");
+        hours.setKey("hours");
+        metaDataRepository.save(hours);
+
+        MetaData rules = new MetaData();
+        rules.setValue("");
+        rules.setKey("rules");
+        metaDataRepository.save(rules);
+
+        MetaData home = new MetaData();
+        home.setValue("");
+        home.setKey("home");
+        metaDataRepository.save(home);
     }
 }

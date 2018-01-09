@@ -108,4 +108,11 @@ public class BookController{
         }
         return new ModelAndView("redirect:/bo/home");
     }
+
+    @GetMapping("/book/{id}")
+    public String displayDetailBookPage(@PathVariable long id, Model model) {
+        model.addAttribute("book",bookService.getBookById(id));
+        return "book-detail";
+    }
+
 }

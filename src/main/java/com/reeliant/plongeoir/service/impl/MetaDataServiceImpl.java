@@ -1,5 +1,6 @@
 package com.reeliant.plongeoir.service.impl;
 
+import com.reeliant.plongeoir.entity.MetaData;
 import com.reeliant.plongeoir.mapper.MetaDataMapper;
 import com.reeliant.plongeoir.repository.MetaDataRepository;
 import com.reeliant.plongeoir.service.MetaDataService;
@@ -20,20 +21,18 @@ public class MetaDataServiceImpl implements MetaDataService{
 
     @Override
     public String getMetaDataByKey(String key) {
+        MetaData metaData = metaDataRepository.findByKey(key);
+        if (metaData == null) {
+            return "";
+        }
         return metaDataMapper.metaDataToMetaDataDTO(metaDataRepository.findByKey(key)).getValue();
     }
 
     @Override
-    public List<String> getOpeningHours() {
-        List<String> openingHours = new ArrayList<>();
-        openingHours.add(getMetaDataByKey("oh_monday"));
-        openingHours.add(getMetaDataByKey("oh_tuesday"));
-        openingHours.add(getMetaDataByKey("oh_wednesday"));
-        openingHours.add(getMetaDataByKey("oh_thursday"));
-        openingHours.add(getMetaDataByKey("oh_friday"));
-        openingHours.add(getMetaDataByKey("oh_saturday"));
-        openingHours.add(getMetaDataByKey("oh_sunday"));
-
-        return openingHours;
+    public void updateMetaData(String data, String key) {
+        MetaData metaData = metaDataRepository.findByKey(key);
+        metaData.setValue(data);
+        metaDataRepository.save(metaData);
     }
+
 }
