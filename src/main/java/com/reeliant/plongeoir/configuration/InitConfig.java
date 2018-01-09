@@ -79,5 +79,10 @@ public class InitConfig{
         home.setValue("");
         home.setKey("home");
         metaDataRepository.save(home);
+
+        MetaData cgu = new MetaData();
+        cgu.setValue("");
+        cgu.setKey("cgu");
+        metaDataRepository.save(cgu);
     }
 }

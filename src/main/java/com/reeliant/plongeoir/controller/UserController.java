@@ -68,4 +68,10 @@ public class UserController {
                 return "redirect:/account";
         }
 
+        @GetMapping("/cgu")
+        public String displayCGUPage(Model model) {
+                model.addAttribute("cgu",metaDataService.getMetaDataByKey("cgu"));
+                return "cgu";
+        }
+
 }
