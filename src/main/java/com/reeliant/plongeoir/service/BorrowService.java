@@ -10,4 +10,8 @@ public interface BorrowService {
     boolean isBookBorrow(Long id);
 
     List<BorrowDTO> getBorrowedBookByUser(Long id);
+
+    void borrowBook(Long id);
+
+    void deleteBorrow(Long id);
 }

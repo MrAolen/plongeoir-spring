@@ -24,14 +24,37 @@
                     <tr th:each="book : ${infos.books}">
                         <th><a th:href="@{'/book/' + ${book.id}}" th:text="${book.title}"></a></th>
                         <th th:text="${book.parutionDate}"></th>
-                        <th><img th:src="@{'data:image/jpeg;base64,'+ ${book.image}}" alt="Image Livre" height="50"/></th>
-                        <th th:text="${book.state}"></th>
-                        <th><a role="button" href="" class="btn btn-primary btn-sm">RESERVER</a></th>
+                        <th><img th:src="@{'data:image/jpeg;base64,'+ ${book.image}}" alt="Image Livre" height="100"/></th>
+                        <th th:text="${book.state}" th:id="'state_' + ${book.id}"></th>
+                        <th><a th:if="${book.state.name() == 'FREE'}" role="button" class="btn btn-primary btn-sm" th:id="'borrow_' + ${book.id}" th:onclick="${'borrowBook(' + book.id + ');'}">RESERVER</a></th>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        function borrowBook(id) {
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "http://localhost:8080/bo/book/borrow/"+id,
+                dataType : 'json',
+                timeout : 100000,
+                success : function(data) {
+                    console.log("SUCCESS");
+                    $("#state_"+id).text("RESERVED");
+                    $("#borrow_"+id).remove();
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                },
+                done : function(e) {
+                    console.log("DONE");
+                }
+            });
+        }
+    </script>
     <div lang="en" th:include="fragments/footer :: footer"></div>
 </div>
 </body>

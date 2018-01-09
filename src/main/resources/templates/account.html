@@ -49,11 +49,11 @@
                   </tr>
                   </thead>
                   <tbody>
-                    <tr th:each="borrow : ${borrows}">
-                      <td th:text="${borrow.book.name}"></td>
+                    <tr th:each="borrow : ${borrows}" th:id="'borrow_' + ${borrow.id}">
+                      <td th:text="${borrow.book.title}"></td>
                       <td>Date à rajotuer</td>
                       <td>
-                        <button type ="button" class="btn btn-primary boutonRendre">Rendre</button>
+                        <a role ="button" class="btn btn-primary boutonRendre" th:onclick="${'deleteBorrow(' + borrow.id + ');'}">Rendre</a>
                       </td>
                     </tr>
                   </tbody>
@@ -136,6 +136,28 @@
 
       </div>
     </div>
+
+    <script>
+        function deleteBorrow(id) {
+            $.ajax({
+                type : "DELETE",
+                contentType : "application/json",
+                url : "http://localhost:8080/bo/book/borrow/"+id,
+                dataType : 'json',
+                timeout : 100000,
+                success : function(data) {
+                    console.log("SUCCESS");
+                    $("#borrow_"+id).remove();
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                },
+                done : function(e) {
+                    console.log("DONE");
+                }
+            });
+        }
+    </script>
     <div lang="en" th:include="fragments/footer :: footer"></div>
   </div>
 </body>

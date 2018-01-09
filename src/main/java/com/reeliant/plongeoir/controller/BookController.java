@@ -5,6 +5,7 @@ import com.reeliant.plongeoir.dto.BookCreateDTO;
 import com.reeliant.plongeoir.dto.BookDTO;
 import com.reeliant.plongeoir.dto.LoginDTO;
 import com.reeliant.plongeoir.service.BookService;
+import com.reeliant.plongeoir.service.BorrowService;
 import com.reeliant.plongeoir.service.CategoryService;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +37,9 @@ public class BookController{
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private BorrowService borrowService;
 
     @GetMapping("/book")
     public ModelAndView displayBookPage() {
@@ -76,6 +81,20 @@ public class BookController{
     @ResponseBody
     public ResponseEntity deleteBook(@PathVariable("id") Long id) {
         bookService.delete(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/bo/book/borrow/{id}")
+    @ResponseBody
+    public ResponseEntity borrowBook(@PathVariable("id") Long id) {
+        borrowService.borrowBook(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/bo/book/borrow/{id}")
+    @ResponseBody
+    public ResponseEntity deleteBorrow(@PathVariable("id") Long id) {
+        borrowService.deleteBorrow(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
