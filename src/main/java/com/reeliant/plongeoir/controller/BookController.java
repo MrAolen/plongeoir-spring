@@ -1,7 +1,7 @@
 package com.reeliant.plongeoir.controller;
 
 import com.reeliant.plongeoir.dto.BookAndCategoryDTO;
-import com.reeliant.plongeoir.dto.BookCreateDTO;
+import com.reeliant.plongeoir.dto.form.BookCreateDTO;
 import com.reeliant.plongeoir.dto.BookDTO;
 import com.reeliant.plongeoir.service.BookService;
 import com.reeliant.plongeoir.service.BorrowService;

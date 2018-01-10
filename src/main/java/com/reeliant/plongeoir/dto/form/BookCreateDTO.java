@@ -1,4 +1,4 @@
-package com.reeliant.plongeoir.dto;
+package com.reeliant.plongeoir.dto.form;
 
 import org.springframework.web.multipart.MultipartFile;
 

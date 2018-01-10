@@ -1,4 +1,4 @@
-package com.reeliant.plongeoir.dto;
+package com.reeliant.plongeoir.dto.ajax;
 
 public class UpdateMetaDataAjaxRequest{
     private String data;

@@ -1,9 +1,7 @@
 package com.reeliant.plongeoir.controller;
 
 import com.reeliant.plongeoir.dto.BackOfficeDataDTO;
-import com.reeliant.plongeoir.dto.BookCreateDTO;
-import com.reeliant.plongeoir.dto.CategoryDTO;
-import com.reeliant.plongeoir.dto.UpdateMetaDataAjaxRequest;
+import com.reeliant.plongeoir.dto.ajax.UpdateMetaDataAjaxRequest;
 import com.reeliant.plongeoir.service.AdminService;
 import com.reeliant.plongeoir.service.CategoryService;
 import com.reeliant.plongeoir.service.MetaDataService;
@@ -13,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BoController {
@@ -34,7 +31,6 @@ public class BoController {
                 model.addAttribute("homepage",metaDataService.getMetaDataByKey("home"));
                 model.addAttribute("cgu",metaDataService.getMetaDataByKey("cgu"));
                 model.addAttribute("infos",backOfficeInformations);
-
                 return "bo-home";
         }
 

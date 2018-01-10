@@ -1,11 +1,7 @@
 package com.reeliant.plongeoir.controller;
 
-import com.reeliant.plongeoir.dto.BookCreateDTO;
 import com.reeliant.plongeoir.dto.CategoryDTO;
 import com.reeliant.plongeoir.service.CategoryService;
-import java.io.IOException;
-import java.text.ParseException;
-import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CategoryController {
