@@ -31,7 +31,7 @@ public class BoController {
                 model.addAttribute("homepage",metaDataService.getMetaDataByKey("home"));
                 model.addAttribute("cgu",metaDataService.getMetaDataByKey("cgu"));
                 model.addAttribute("infos",backOfficeInformations);
-                return "bo-home";
+                return "bo/bo-home";
         }
 
 

@@ -18,12 +18,12 @@ public class LoginController{
     @GetMapping("/login")
     public String displayLoginpage(Model model) {
         model.addAttribute("login",new LoginDTO());
-        return "login";
+        return "fo/login";
     }
 
     @GetMapping("/bo/login")
     public String displayBoLoginPage(Model model) {
         model.addAttribute("login",new LoginDTO());
-        return "bo-login";
+        return "bo/bo-login";
     }
 }

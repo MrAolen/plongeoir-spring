@@ -57,15 +57,15 @@ public class BookController{
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("error", "Impossible de créer le livre");
-            return "bo-home";
+            return "bo/bo-home";
         } catch (SQLException e) {
             e.printStackTrace();
             model.addAttribute("error","Impossible de créer le livre");
-            return "bo-home";
+            return "bo/bo-home";
         } catch (ParseException e) {
             e.printStackTrace();
             model.addAttribute("error","Impossible de créer le livre");
-            return "bo-home";
+            return "bo/bo-home";
         }
         return "redirect:/bo/home";
     }
@@ -74,7 +74,7 @@ public class BookController{
     public String displayDetailBookPage(@PathVariable("id") Long id, Model model) {
         BookDTO book = bookService.getBookById(id);
         model.addAttribute("book",book);
-        return "bo-detail-book";
+        return "bo/bo-detail-book";
     }
 
     @DeleteMapping("/bo/book/delete/{id}")
@@ -113,7 +113,7 @@ public class BookController{
         model.addAttribute("image",bookToUpdate.getImage());
         model.addAttribute("id",id);
         model.addAttribute("categories",categoryService.getAllCategories());
-        return "bo-update-book";
+        return "bo/bo-update-book";
     }
 
     @PostMapping("/bo/book/update/{id}")
@@ -131,7 +131,7 @@ public class BookController{
     @GetMapping("/book/{id}")
     public String displayDetailBookPage(@PathVariable long id, Model model) {
         model.addAttribute("book",bookService.getBookById(id));
-        return "book-detail";
+        return "fo/book-detail";
     }
 
 }

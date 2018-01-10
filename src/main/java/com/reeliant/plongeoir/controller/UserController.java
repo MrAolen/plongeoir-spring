@@ -31,13 +31,13 @@ public class UserController {
         @GetMapping({"/home","/"})
         public String displayHomePage(Model model) {
                 model.addAttribute("homeMessage",metaDataService.getMetaDataByKey("home"));
-                return "home";
+                return "fo/home";
         }
 
         @GetMapping("/register")
         public String displayRegisterPage(Model model) {
                 model.addAttribute("user",new UserCreationDTO());
-                return "register";
+                return "fo/register";
         }
 
         @PostMapping("/register")
@@ -59,7 +59,7 @@ public class UserController {
 
                 model.addAttribute("user", userCreationDTO);
                 model.addAttribute("borrows", borrowService.getBorrowedBookByUser(user.getId()));
-                return "account";
+                return "fo/account";
         }
 
         @PostMapping("/update")
@@ -71,7 +71,7 @@ public class UserController {
         @GetMapping("/cgu")
         public String displayCGUPage(Model model) {
                 model.addAttribute("cgu",metaDataService.getMetaDataByKey("cgu"));
-                return "cgu";
+                return "fo/cgu";
         }
 
 }

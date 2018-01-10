@@ -20,13 +20,13 @@ public class InformationsController{
     public String displayOpeningHoursPage(Model model) {
         String hours = metaDataService.getMetaDataByKey("hours");
         model.addAttribute("hours",hours);
-        return "hours";
+        return "fo/hours";
     }
 
     @GetMapping("/rules")
     public String displayRulesPage(Model model) {
         String rules = metaDataService.getMetaDataByKey("rules");
         model.addAttribute("rules",rules);
-        return "rules";
+        return "fo/rules";
     }
 }

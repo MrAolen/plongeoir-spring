@@ -22,7 +22,7 @@ public class CategoryController {
         @GetMapping("/bo/category/create")
         public String displayCategoryCreationPage(Model model) {
                 model.addAttribute("category",new CategoryDTO());
-                return "bo-create-category";
+                return "bo/bo-create-category";
         }
 
         @PostMapping("/bo/category/create")
@@ -35,7 +35,7 @@ public class CategoryController {
         public String displayDetailCategoryPage(@PathVariable("id") Long id, Model model) {
                 CategoryDTO category = categoryService.getById(id);
                 model.addAttribute("category",category);
-                return "bo-detail-category";
+                return "bo/bo-detail-category";
         }
 
         @DeleteMapping("/bo/category/delete/{id}")
@@ -50,7 +50,7 @@ public class CategoryController {
                 CategoryDTO categoryToUpdate = categoryService.getById(id);
                 model.addAttribute("category",categoryToUpdate);
                 model.addAttribute("id",id);
-                return "bo-update-category";
+                return "bo/bo-update-category";
         }
 
         @PostMapping("/bo/category/update/{id}")
