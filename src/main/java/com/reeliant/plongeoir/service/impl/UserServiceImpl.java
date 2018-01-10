@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
         userCurrent.setHashedPassword(hashedPassword);
         userCurrent.setRoles(new HashSet<>(roles));
         userCurrent.setUsername(userCreationDTO.getUsername());
-        userCurrent.setAge(Long.parseLong(userCreationDTO.getAge().toString()));
+        userCurrent.setAge(Long.parseLong(userCreationDTO.getAge()+""));
         userCurrent.setForname(userCreationDTO.getForname());
         userCurrent.setName(userCreationDTO.getName());
         userRepository.save(userCurrent);
