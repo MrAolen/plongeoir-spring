@@ -39,12 +39,11 @@ public class UserController {
         }
 
         @PostMapping("/register")
-        public String submitRegisterPage(@Valid @ModelAttribute UserCreationDTO userCreationDTO, BindingResult bindingResult,Model model) {
+        public String submitRegisterPage(@Valid @ModelAttribute("user") UserCreationDTO user, BindingResult bindingResult) {
                 if (bindingResult.hasErrors()) {
-                        model.addAttribute("user",new UserCreationDTO());
                         return "fo/register";
                 }
-                userService.createUser(userCreationDTO);
+                userService.createUser(user);
                 return "redirect:/login";
         }
 

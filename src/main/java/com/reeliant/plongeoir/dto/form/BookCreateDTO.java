@@ -8,8 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
 
 public class BookCreateDTO{
-    @NotNull
-    @Pattern(regexp = "\"[a-zA-Z]+\"")
+    @NotNull(message = "")
+    @Pattern(regexp = "\"[a-zA-Z]+\"",message = "")
     private String title;
     @NotNull
     private String parutionDate;

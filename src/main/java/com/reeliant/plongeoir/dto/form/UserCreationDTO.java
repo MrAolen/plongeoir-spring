@@ -5,23 +5,26 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserCreationDTO{
     @NotNull
-    @Size(min=3, max=8)
-    @Pattern(regexp = "([a-zA-Z0-9]{3}$)")
+    @Size(min=3, max=8, message="La taille de l'identifiant doit être compris entre 3 et 8")
+    @Pattern(regexp = "([a-zA-Z0-9]*)", message="L'identifiant doit être composé que de charactère alphanumérique")
     private String username;
     @NotNull
-    @Pattern(regexp = "((?=.*\\\\d)(?=.*[a-zA-Z])(?=.*[@#$%*]).{8,15})")
+    @Size(min=8, max=15, message="Le mot de passe doit être en 8 et 15 charactère")
+    @Pattern(regexp = "((?=.*\\\\d)(?=.*[a-zA-Z])(?=.*[@#$%*]))")
     private String password;
     @NotNull
-    @Pattern(regexp = "((?=.*\\\\d)(?=.*[a-zA-Z])(?=.*[@#$%*]).{8,15})")
+    @Size(min=8, max=15, message="Le mot de passe doit être en 8 et 15 charactère")
+    @Pattern(regexp = "((?=.*\\\\d)(?=.*[a-zA-Z])(?=.*[@#$%*]))")
     private String confirmPassword;
     @NotNull
-    @Pattern(regexp = "\"[a-zA-Z]+\"")
+    @Pattern(regexp = "[a-zA-Z]+", message="Prenom non valide")
     private String name;
     @NotNull
-    @Pattern(regexp = "\"[a-zA-Z]+\"")
+    @Pattern(regexp = "[a-zA-Z]+", message="Prenom non valide")
     private String forname;
     @NotNull
     @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
