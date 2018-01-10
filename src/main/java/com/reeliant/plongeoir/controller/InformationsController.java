@@ -4,6 +4,7 @@ import com.reeliant.plongeoir.service.MetaDataService;
 import java.sql.Blob;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,14 +17,16 @@ public class InformationsController{
     private MetaDataService metaDataService;
 
     @GetMapping("/hours")
-    public ModelAndView displayOpeningHoursPage() {
+    public String displayOpeningHoursPage(Model model) {
         String hours = metaDataService.getMetaDataByKey("hours");
-        return new ModelAndView("hours","hours",hours);
+        model.addAttribute("hours",hours);
+        return "hours";
     }
 
     @GetMapping("/rules")
-    public ModelAndView displayRulesPage() {
+    public String displayRulesPage(Model model) {
         String rules = metaDataService.getMetaDataByKey("rules");
-        return new ModelAndView("rules","rules",rules);
+        model.addAttribute("rules",rules);
+        return "rules";
     }
 }

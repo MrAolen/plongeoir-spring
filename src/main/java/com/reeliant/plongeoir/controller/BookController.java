@@ -3,7 +3,6 @@ package com.reeliant.plongeoir.controller;
 import com.reeliant.plongeoir.dto.BookAndCategoryDTO;
 import com.reeliant.plongeoir.dto.BookCreateDTO;
 import com.reeliant.plongeoir.dto.BookDTO;
-import com.reeliant.plongeoir.dto.LoginDTO;
 import com.reeliant.plongeoir.service.BookService;
 import com.reeliant.plongeoir.service.BorrowService;
 import com.reeliant.plongeoir.service.CategoryService;
@@ -11,10 +10,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import javax.jws.WebParam.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BookController{
@@ -42,9 +37,10 @@ public class BookController{
     private BorrowService borrowService;
 
     @GetMapping("/book")
-    public ModelAndView displayBookPage() {
+    public String displayBookPage(Model model) {
         BookAndCategoryDTO info = bookService.getBooksAndCategories();
-        return new ModelAndView("books","infos",info);
+        model.addAttribute("infos",info);
+        return "books";
     }
 
     @GetMapping("/bo/book/create")
@@ -55,26 +51,30 @@ public class BookController{
     }
 
     @PostMapping("/bo/book/create")
-    public ModelAndView submitCreateBookPage(@ModelAttribute BookCreateDTO book) {
+    public String submitCreateBookPage(@ModelAttribute BookCreateDTO book, Model model) {
         try {
             bookService.createBook(book);
         } catch (IOException e) {
             e.printStackTrace();
-            return new ModelAndView("bo-home","error", "Impossible de créer le livre");
+            model.addAttribute("error", "Impossible de créer le livre");
+            return "bo-home";
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ModelAndView("bo-home","success","Impossible de créer le livre");
+            model.addAttribute("error","Impossible de créer le livre");
+            return "bo-home";
         } catch (ParseException e) {
             e.printStackTrace();
-            return new ModelAndView("bo-home","success","Impossible de créer le livre");
+            model.addAttribute("error","Impossible de créer le livre");
+            return "bo-home";
         }
-        return new ModelAndView("redirect:/bo/home");
+        return "redirect:/bo/home";
     }
 
     @GetMapping("/bo/book/{id}")
-    public ModelAndView displayDetailBookPage(@PathVariable("id") Long id) {
+    public String displayDetailBookPage(@PathVariable("id") Long id, Model model) {
         BookDTO book = bookService.getBookById(id);
-        return new ModelAndView("bo-detail-book","book",book);
+        model.addAttribute("book",book);
+        return "bo-detail-book";
     }
 
     @DeleteMapping("/bo/book/delete/{id}")
@@ -117,7 +117,7 @@ public class BookController{
     }
 
     @PostMapping("/bo/book/update/{id}")
-    public ModelAndView displayUpdateBookPage(@PathVariable("id") Long id, @ModelAttribute BookCreateDTO book) {
+    public String displayUpdateBookPage(@PathVariable("id") Long id, @ModelAttribute BookCreateDTO book, Model model) {
         try {
             bookService.updateBook(book,id);
         } catch (IOException e) {
@@ -125,7 +125,7 @@ public class BookController{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return new ModelAndView("redirect:/bo/home");
+        return "redirect:/bo/home";
     }
 
     @GetMapping("/book/{id}")

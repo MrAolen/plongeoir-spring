@@ -16,8 +16,9 @@ public class LoginController{
     private AdminService adminService;
 
     @GetMapping("/login")
-    public ModelAndView displayLoginpage() {
-        return new ModelAndView("login","login",new LoginDTO());
+    public String displayLoginpage(Model model) {
+        model.addAttribute("login",new LoginDTO());
+        return "login";
     }
 
     @GetMapping("/bo/login")

@@ -25,20 +25,22 @@ public class CategoryController {
         private CategoryService categoryService;
 
         @GetMapping("/bo/category/create")
-        public ModelAndView displayCategoryCreationPage() {
-                return new ModelAndView("bo-create-category","category",new CategoryDTO());
+        public String displayCategoryCreationPage(Model model) {
+                model.addAttribute("category",new CategoryDTO());
+                return "bo-create-category";
         }
 
         @PostMapping("/bo/category/create")
-        public ModelAndView submitCategoryCreation(@ModelAttribute CategoryDTO category) {
+        public String submitCategoryCreation(@ModelAttribute CategoryDTO category) {
                 categoryService.createCategory(category);
-                return new ModelAndView("redirect:/bo/home");
+                return "redirect:/bo/home";
         }
 
         @GetMapping("/bo/category/{id}")
-        public ModelAndView displayDetailCategoryPage(@PathVariable("id") Long id) {
+        public String displayDetailCategoryPage(@PathVariable("id") Long id, Model model) {
                 CategoryDTO category = categoryService.getById(id);
-                return new ModelAndView("bo-detail-category","category",category);
+                model.addAttribute("category",category);
+                return "bo-detail-category";
         }
 
         @DeleteMapping("/bo/category/delete/{id}")
@@ -57,8 +59,8 @@ public class CategoryController {
         }
 
         @PostMapping("/bo/category/update/{id}")
-        public ModelAndView submitCategoryUpdate(@PathVariable("id") Long id, @ModelAttribute CategoryDTO category) {
+        public String submitCategoryUpdate(@PathVariable("id") Long id, @ModelAttribute CategoryDTO category) {
                 categoryService.updateCategory(category,id);
-                return new ModelAndView("redirect:/bo/home");
+                return "redirect:/bo/home";
         }
 }
