@@ -1,6 +1,6 @@
 package com.reeliant.plongeoir.service.impl;
 
-import com.reeliant.plongeoir.dto.UserCreationDTO;
+import com.reeliant.plongeoir.dto.form.UserCreationDTO;
 import com.reeliant.plongeoir.dto.UserDTO;
 import com.reeliant.plongeoir.entity.Role;
 import com.reeliant.plongeoir.entity.User;

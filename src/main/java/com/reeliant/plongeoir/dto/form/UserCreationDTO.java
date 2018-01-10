@@ -1,4 +1,4 @@
-package com.reeliant.plongeoir.dto;
+package com.reeliant.plongeoir.dto.form;
 
 public class UserCreationDTO{
     private String username;

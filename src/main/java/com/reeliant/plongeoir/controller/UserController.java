@@ -1,20 +1,16 @@
 package com.reeliant.plongeoir.controller;
 
-import com.reeliant.plongeoir.dto.UserCreationDTO;
+import com.reeliant.plongeoir.dto.form.UserCreationDTO;
 import com.reeliant.plongeoir.dto.UserDTO;
-import com.reeliant.plongeoir.entity.MetaData;
-import com.reeliant.plongeoir.entity.User;
 import com.reeliant.plongeoir.service.BorrowService;
 import com.reeliant.plongeoir.service.MetaDataService;
 import com.reeliant.plongeoir.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
