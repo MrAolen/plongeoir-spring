@@ -8,18 +8,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Date;
 
 public class BookCreateDTO{
-    @NotNull(message = "")
-    @Pattern(regexp = "\"[a-zA-Z]+\"",message = "")
+    @NotNull
     private String title;
     @NotNull
     private String parutionDate;
     @NotNull
-    @Pattern(regexp = "\"[a-zA-Z]+\"")
     private String summary;
     @NotNull
     private MultipartFile image;
     @NotNull
-    @Size(min = 1)
     private Long categoryId;
 
     public String getTitle() {

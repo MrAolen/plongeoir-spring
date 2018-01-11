@@ -42,14 +42,14 @@ public class BookController{
     public String displayBookPage(Model model) {
         BookAndCategoryDTO info = bookService.getBooksAndCategories();
         model.addAttribute("infos",info);
-        return "books";
+        return "fo/books";
     }
 
     @GetMapping("/bo/book/create")
     public String displayCreateBookPage(Model model) {
         model.addAttribute("book",new BookCreateDTO());
         model.addAttribute("categories",categoryService.getAllCategories());
-        return "bo-create-book";
+        return "bo/bo-create-book";
     }
 
     @PostMapping("/bo/book/create")
